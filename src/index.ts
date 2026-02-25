@@ -16,10 +16,20 @@ app.get('/greet/:name', (req: Request, res: Response) => {
   res.json({ message: `Hello, ${name}!` });
 });
 
-// TODO: Add more endpoints here (agents will work on this)
+app.get('/todos', (req: Request, res: Response) => {
+  const todos = [
+    { id: 1, title: 'Buy groceries', completed: false },
+    { id: 2, title: 'Schedule dentist appointment', completed: true },
+    { id: 3, title: 'Finish project report', completed: false },
+  ];
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  res.json(todos);
 });
+
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
 
 export default app;
